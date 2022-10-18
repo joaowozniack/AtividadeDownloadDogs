@@ -3,7 +3,11 @@ from threading import Thread
 import os
 import socket
 
+ip = '127.0.0.1'
+porta = 9999
+
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
 inicio = time.time()
 
 rodando=True
