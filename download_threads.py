@@ -1,7 +1,12 @@
 import time
 from threading import Thread
 import os
+import socket
 
+ip = '127.0.0.1'
+porta = 9999
+
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 inicio = time.time()
 
@@ -40,7 +45,8 @@ parte10 = int(quantidade * 10 / 10)
 
 def thread(parte,quantidade):
     for posicao in range(parte, quantidade):
-        download_url(listaApk[posicao])
+        msg = download_url(listaApk[posicao])
+        s.sendto(msg.encode(), (ip, porta))
 
 
 t0 = Thread(target=thread, args=(0,parte1))
