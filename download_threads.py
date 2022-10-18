@@ -1,8 +1,9 @@
 import time
 from threading import Thread
 import os
+import socket
 
-
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 inicio = time.time()
 
 rodando=True
@@ -36,12 +37,13 @@ parte8 = int(quantidade * 8 / 10)
 parte9 = int(quantidade * 9 / 10)
 parte10 = int(quantidade * 10 / 10)
 
-
+ip = "127.0.0.1"
+porta = 9999
 
 def thread(parte,quantidade):
     for posicao in range(parte, quantidade):
-        download_url(listaApk[posicao])
-
+        msg = download_url(listaApk[posicao])
+        s.sendto(msg.encode(), (ip, porta))
 
 t0 = Thread(target=thread, args=(0,parte1))
 t0.start()
@@ -78,4 +80,4 @@ tempo_total = fim - inicio
 
 print("====================================================")
 print(f"O tempo de execução foi de {tempo_total:,.2f} segundos")
-print("====================================================")
+print("====================================================")       
