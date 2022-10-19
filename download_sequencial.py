@@ -1,3 +1,4 @@
+# ARTHUR PREZOTTO ANDRADE, JOÃO MARCIO, MATHEUS ROSA
 import os
 import time
 
